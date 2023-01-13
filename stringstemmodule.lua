@@ -534,7 +534,7 @@ end
 ------------------ The main handle function: ------------------
 
 
-function StringStem.stem(words: {string}) : {string}
+function StringStem.stem(words: {[number]: string}) : {[number]: string}
 	-- Short words are ignored as per documentation.
 	
 	local final = {}
@@ -549,9 +549,8 @@ function StringStem.stem(words: {string}) : {string}
 			word = StringStem.step_4(word)
 			word = StringStem.step_5a(word)
 			word = StringStem.step_5b(word)
-			
-			table.insert(final, word)
 		end
+		table.insert(final, word)
 	end
 	
 	return final
