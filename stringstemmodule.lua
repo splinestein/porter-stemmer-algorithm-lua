@@ -534,20 +534,27 @@ end
 ------------------ The main handle function: ------------------
 
 
-function StringStem.stem(word: string) : string
+function StringStem.stem(words: {string}) : {string}
 	-- Short words are ignored as per documentation.
-	if #word > 2 then
-		word = StringStem.step_1a(word)
-		word = StringStem.step_1b(word)
-		word = StringStem.step_1c(word)
-		word = StringStem.step_2(word)
-		word = StringStem.step_3(word)
-		word = StringStem.step_4(word)
-		word = StringStem.step_5a(word)
-		word = StringStem.step_5b(word)
+	
+	local final = {}
+	
+	for _, word in ipairs(words) do
+		if #word > 2 then
+			word = StringStem.step_1a(word)
+			word = StringStem.step_1b(word)
+			word = StringStem.step_1c(word)
+			word = StringStem.step_2(word)
+			word = StringStem.step_3(word)
+			word = StringStem.step_4(word)
+			word = StringStem.step_5a(word)
+			word = StringStem.step_5b(word)
+			
+			table.insert(final, word)
+		end
 	end
 	
-	return word
+	return final
 end
 
 
